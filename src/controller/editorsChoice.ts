@@ -1,24 +1,19 @@
 import axios, { AxiosError } from "axios";
 import { Request, Response } from "express";
 import { Collection } from "../interface/result";
-import verifier from "../utils/verifier";
+
 
 async function editorsChoice(req: Request, res: Response) {
 
     const secret = req.query.secret;
     if (secret == null) {
-        return res.status(400).json({ "error": "Secret is missing" });
-    }
-
-    const dbSecret = await verifier();
-    if (dbSecret != secret) {
-        return res.status(400).json({ "error": "Invalid Secret." });
+        return res.status(400).json({ "error": "Pixabay Secret key is missing" });
     }
 
     try {
 
         const options = {
-            url: `https://pixabay.com/api/?key=${process.env.KEY}&page=1&per_page=200&image_type=photo&q=%20&order=ec&safesearch=true&orientation=vertical`,
+            url: `https://pixabay.com/api/?key=${secret}&page=1&per_page=200&image_type=photo&q=%20&order=ec&safesearch=true&orientation=vertical`,
             method: 'GET',
         }
         const result = await axios.request(options);
@@ -29,7 +24,7 @@ async function editorsChoice(req: Request, res: Response) {
         if(total > 600) {
             for(let i = 2; i<= 3; i++) {
                 const currOption =  {
-                    url: `https://pixabay.com/api/?key=${process.env.KEY}&page=${i}&per_page=200&image_type=photo&q=%20&order=ec&safesearch=true&orientation=vertical`,
+                    url: `https://pixabay.com/api/?key=${secret}&page=${i}&per_page=200&image_type=photo&q=%20&order=ec&safesearch=true&orientation=vertical`,
                     method:'GET'
                 }
                 const currResult = await axios.request(currOption);

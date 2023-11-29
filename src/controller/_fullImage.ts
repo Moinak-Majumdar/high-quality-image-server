@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import verifier from "../utils/verifier";
 import axios, { AxiosError } from "axios";
 import { FullImage } from "../interface/result";
 
@@ -7,12 +6,7 @@ async function _fullImage(req: Request, res: Response) {
 
     const secret = req.query.secret;
     if (secret == null) {
-        return res.status(400).json({ "error": "Secret is missing" });
-    }
-
-    const dbSecret = await verifier();
-    if (dbSecret != secret) {
-        return res.status(400).json({ "error": "Invalid Secret." });
+        return res.status(400).json({ "error": "Pixabay Secret key is missing" });
     }
 
     const imageId = req.query.imageId;
@@ -22,7 +16,7 @@ async function _fullImage(req: Request, res: Response) {
 
     try {
         const options = {
-            url: `https://pixabay.com/api/?key=${process.env.KEY}&id=${imageId}`,
+            url: `https://pixabay.com/api/?key=${secret}&id=${imageId}`,
             method: "GET",
         }
 

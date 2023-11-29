@@ -1,29 +1,35 @@
 import axios, { AxiosError } from "axios";
 import { Request, Response } from "express";
 import { Collection } from "../interface/result";
-import verifier from "../utils/verifier";
 
-async function initial(req: Request, res: Response) {
+async function trending(req: Request, res: Response) {
 
     const secret = req.query.secret;
     if (secret == null) {
-        return res.status(400).json({ "error": "Secret is missing" });
-    }
-
-    const dbSecret = await verifier();
-    if (dbSecret != secret) {
-        return res.status(400).json({ "error": "Invalid Secret." });
+        return res.status(400).json({ "error": "Pixabay Secret key is missing" });
     }
 
     try {
 
         const options = {
-            url: `https://pixabay.com/api/?key=${process.env.key}&image_type=photo&q=phone%20wallpapers&safesearch=true&orientation=vertical&per_page=200&order=ec`,
+            url: `https://pixabay.com/api/?key=${secret}&q=wallpaper&image_type=photo&order=trending&orientation=vertical&per_page=200&page=1`,
             method: 'GET',
         }
         const result = await axios.request(options);
 
-        const images: any[] = result.data['hits'];
+        let images: any[] = result.data['hits'];
+        const total: number = result.data['total'];
+     
+        if(total > 600) {
+            for(let i = 2; i<= 3; i++) {
+                const currOption =  {
+                    url: `https://pixabay.com/api/?key=${secret}&q=wallpaper&image_type=photo&order=trending&orientation=vertical&per_page=200&page=${i}`,
+                    method:'GET'
+                }
+                const currResult = await axios.request(currOption);
+                images = [...images, ...currResult.data['hits']];
+            }
+        }
 
         if (images) {
             const collection: Collection[] = [];
@@ -40,7 +46,7 @@ async function initial(req: Request, res: Response) {
                 });
             });
 
-            return res.status(200).json({"items": collection.length, collection});
+            return res.status(200).json({"items": images.length, collection});
         }
 
         return res.status(400).json({"error": "collection is empty"});
@@ -55,4 +61,4 @@ async function initial(req: Request, res: Response) {
 
 }
 
-export default initial;
+export default trending;

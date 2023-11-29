@@ -15,18 +15,12 @@
 
 3. **clone this repository**
 
-4. **Create a ```.env``` file, add items like following..**
-    ```
-    KEY='YOUR PIXABAY API KEY'
-    ```
-    <i>PS: Each endpoint needs a secret key. visit - to add your custom logic </i>
-
-5. **Install the dependencies**
+4. **Install the dependencies**
     ```
     npm install
     ```
 
-6. **start express server**
+5. **start express server**
     ```
     npm run dev
     ```
@@ -36,9 +30,11 @@
 
 ## Api documentation:
 
+**Note :** Each endpoint has a query parameter called ```secret``` where you have to pass your pixabay secret key. Follow <a href="https://pixabay.com/api/docs/" target="_blank">Pixabay api doc</a> for more information.
+
 1. **Get 200 images.**
 
-    make a GET request at ```/initial``` endpoint.
+    make a GET request at ```/latest``` endpoint.
 
     *Response body*
     ```
@@ -59,7 +55,7 @@
 
 2. **Get 600 images.**
 
-    make a GET request at ```/latest``` or ```/editorsChoice``` endpoint.
+    make a GET request at ```/trending``` or ```/editorsChoice``` endpoint.
 
     *Response body*
     ```

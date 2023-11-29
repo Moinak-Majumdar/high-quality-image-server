@@ -1,18 +1,12 @@
 import axios, { AxiosError } from "axios";
 import { Request, Response } from "express";
 import { Collection } from "../interface/result";
-import verifier from "../utils/verifier";
 
 async function categorized(req: Request, res: Response) {
 
     const secret = req.query.secret;
     if (secret == null) {
-        return res.status(400).json({ "error": "Secret is missing" });
-    }
-
-    const dbSecret = await verifier();
-    if (dbSecret != secret) {
-        return res.status(400).json({ "error": "Invalid Secret." });
+        return res.status(400).json({ "error": "Pixabay Secret key is missing" });
     }
 
     const {category, isSafe} = req.query;
@@ -25,11 +19,10 @@ async function categorized(req: Request, res: Response) {
         safeSearch = isSafe;
     }
 
-    console.log(isSafe, safeSearch)
 
     try {
         const options = {
-            url: `https://pixabay.com/api/?key=${process.env.KEY}&image_type=photo&q=${category}&safesearch=${safeSearch}&orientation=vertical&page=1&per_page=200`,
+            url: `https://pixabay.com/api/?key=${secret}&image_type=photo&q=${category}&safesearch=${safeSearch}&orientation=vertical&page=1&per_page=200`,
             method: 'GET',
         }
         const result = await axios.request(options);
@@ -41,7 +34,7 @@ async function categorized(req: Request, res: Response) {
             console.log(total, images.length);
             for(let i = 2; i<= 3; i++) {
                 const currOption =  {
-                    url: `https://pixabay.com/api/?key=${process.env.KEY}&image_type=photo&q=${category}&safesearch=${safeSearch}&orientation=vertical&page=${i}&per_page=200`,
+                    url: `https://pixabay.com/api/?key=${secret}&image_type=photo&q=${category}&safesearch=${safeSearch}&orientation=vertical&page=${i}&per_page=200`,
                     method: 'GET',
                 }
                 const currResult = await axios.request(currOption);
