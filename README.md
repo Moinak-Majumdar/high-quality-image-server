@@ -2,7 +2,13 @@
 
 ### Powered by Pixabay.com, Fetch upto 600 images from pixabay without signin.
 
-## installation
+## Deployment 
+
+```
+https://pixel-perks.vercel.app
+```
+
+## Installation
 
 ### optional Steps
 1. **Download and install node js.** <a href="https://nodejs.org/en">click here</a>
@@ -30,11 +36,19 @@
 
 ## Api documentation:
 
-**Note :** Each endpoint has a query parameter called ```secret``` where you have to pass your pixabay secret key. Follow <a href="https://pixabay.com/api/docs/" target="_blank">Pixabay api doc</a> for more information.
+**Note :** Each endpoint has a query parameter called ```secret``` where you have to pass your pixabay secret key.
+```
+https://pixel-perks.vercel.app/latest?secret=YOUR-PIXABAY-SECRET-KEY
+```
+Follow <a href="https://pixabay.com/api/docs/" target="_blank">Pixabay api doc</a> for your secret key and more information.
+
 
 1. **Get 200 images.**
 
-    make a GET request at ```/latest``` endpoint.
+    ```
+    make a GET request at :
+    https://pixel-perks.vercel.app/latest?secret=YOUR-PIXABAY-SECRET
+    ```
 
     *Response body*
     ```
@@ -54,8 +68,15 @@
     ```
 
 2. **Get 600 images.**
+    ```
+    Make a GET request at :
+    https://pixel-perks.vercel.app/trending?secret=YOUR-PIXABAY-SECRET
 
-    make a GET request at ```/trending``` or ```/editorsChoice``` endpoint.
+    or
+    
+    https://pixel-perks.vercel.app/editorsChoice?secret=YOUR-PIXABAY-SECRET
+    
+    ```
 
     *Response body*
     ```
@@ -76,7 +97,10 @@
 
 3. **Get 600 images by category.**
 
-    make a GET request at ```/categorized?category=nature``` endpoint.  
+    ```
+    Make a GET request at :
+    https://pixel-perks.vercel.app/categorized?category=nature&secret=YOUR-PIXABAY-SECRET
+    ``` 
 
     *Response body*
     ```
@@ -97,8 +121,10 @@
 
 4. **Get detailed image by id**
 
-    make a GET request at ```/fullImage?imageId=123456``` endpoint.  
-
+    ```
+    Make a GET request at :
+    https://pixel-perks.vercel.app/fullImage?imageId=123456&secret=YOUR-PIXABAY-SECRET
+    ``` 
     *Response body*
     ```
         {

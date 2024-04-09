@@ -31,7 +31,6 @@ async function categorized(req: Request, res: Response) {
         const total: number = result.data['total'];
      
         if(total > 500) {
-            console.log(total, images.length);
             for(let i = 2; i<= 3; i++) {
                 const currOption =  {
                     url: `https://pixabay.com/api/?key=${secret}&image_type=photo&q=${category}&safesearch=${safeSearch}&orientation=vertical&page=${i}&per_page=200`,
