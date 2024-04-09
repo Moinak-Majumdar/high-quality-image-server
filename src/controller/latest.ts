@@ -10,13 +10,16 @@ async function latest(req: Request, res: Response) {
         return res.status(400).json({ "error": "Pixabay Secret key is missing" });
     }
 
+    const query_items = ["wallpaper", "background", " ", "mobile wallpaper"];
+    const random_q = encodeURIComponent(query_items[Math.floor(Math.random()*query_items.length)]);
+
     try {
 
         const options = {
-            url: `https://pixabay.com/api/?key=${secret}&q=wallpaper&image_type=photo&order=latest&orientation=vertical&per_page=200`,
+            url: `https://pixabay.com/api/?key=${secret}&q=${random_q}&image_type=photo&order=latest&orientation=vertical&per_page=200`,
             method: 'GET',
         }
-        const result = await axios.request(options);
+        const result = await axios.request(options)
 
         const images: any[] = result.data['hits'];
 
@@ -35,7 +38,7 @@ async function latest(req: Request, res: Response) {
                 });
             });
 
-            return res.status(200).json({"items": collection.length, collection});
+            return res.status(200).json({"items": collection.length, "prompt": random_q, collection});
         }
 
         return res.status(400).json({"error": "collection is empty"});
