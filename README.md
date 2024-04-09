@@ -19,132 +19,27 @@ https://pixel-perks.vercel.app
     ```
 ### Required Steps
 
-3. **clone this repository**
+1. **clone this repository**
+    ```
+    git clone https://github.com/Moinak-Majumdar/high-quality-image-server.git
+    ```
 
-4. **Install the dependencies**
+2. **Install the dependencies**
     ```
     npm install
     ```
 
-5. **start express server**
+3. **start express server**
     ```
     npm run dev
     ```
 
-### Help <a href='https://blog.logrocket.com/how-to-set-up-node-typescript-express/' target="_blank">create an express app with ts</a>
+## Documentation
 
-
-## Api documentation:
-
-**Note :** Each endpoint has a query parameter called ```secret``` where you have to pass your pixabay secret key.
-```
-https://pixel-perks.vercel.app/latest?secret=YOUR-PIXABAY-SECRET-KEY
-```
-Follow <a href="https://pixabay.com/api/docs/" target="_blank">Pixabay api doc</a> for your secret key and more information.
-
-
-1. **Get 200 images.**
-
-    ```
-    make a GET request at :
-    https://pixel-perks.vercel.app/latest?secret=YOUR-PIXABAY-SECRET
-    ```
-
-    *Response body*
-    ```
-        {
-            "items": 200,
-            "collection": [
-                {
-                    "id": number,
-                    "cdn":  url,
-                    "web340": url,
-                    "web640": url,
-                },
-
-                ... more data
-            ]
-        }
-    ```
-
-2. **Get 600 images.**
-    ```
-    Make a GET request at :
-    https://pixel-perks.vercel.app/trending?secret=YOUR-PIXABAY-SECRET
-
-    or
-    
-    https://pixel-perks.vercel.app/editorsChoice?secret=YOUR-PIXABAY-SECRET
-    
-    ```
-
-    *Response body*
-    ```
-        {
-            "items": 600,
-            "collection": [
-                {
-                    "id": number,
-                    "cdn": url,
-                    "web340": url,
-                    "web640": url,
-                },
-
-                ... more data
-            ]
-        }
-    ```
-
-3. **Get 600 images by category.**
-
-    ```
-    Make a GET request at :
-    https://pixel-perks.vercel.app/categorized?category=nature&secret=YOUR-PIXABAY-SECRET
-    ``` 
-
-    *Response body*
-    ```
-        {
-            "items": 600,
-            "collection": [
-                {
-                    "id": number,
-                    "cdn": url,
-                    "web340": url,
-                    "web640": url,
-                },
-
-                ... more data
-            ]
-        }
-    ```
-
-4. **Get detailed image by id**
-
-    ```
-    Make a GET request at :
-    https://pixel-perks.vercel.app/fullImage?imageId=123456&secret=YOUR-PIXABAY-SECRET
-    ``` 
-    *Response body*
-    ```
-        {
-            "fullImage": {
-              "id": 123456,
-              "cdn": url,
-              "web340": url,
-              "web640": url,
-              "image": url,
-              "imageSize": number,
-              "tags": string,
-              "view": number,
-              "likes": number,
-              "downloads": number,
-              "owner": String,
-              "ownerDp": url
-            }
-        }
-    ```
+### Check [Api Documentation](/DOCS.md) for more information 
 
 ---
 
-#### Don't forget to leave a star 👊.
+### Don't forget to leave a star ⭐.
+
+### Happy coding !!

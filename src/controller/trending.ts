@@ -9,7 +9,7 @@ async function trending(req: Request, res: Response) {
         return res.status(400).json({ "error": "Pixabay Secret key is missing" });
     }
 
-    const query_items = ["wallpaper", "background", "mobile%20wallpaper"];
+    const query_items = ["wallpaper", "background", "mobile wallpaper"];
     const random_q = encodeURIComponent(query_items[Math.floor(Math.random()*query_items.length)]);
 
     try {
