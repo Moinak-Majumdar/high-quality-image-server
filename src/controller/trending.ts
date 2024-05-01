@@ -5,9 +5,6 @@ import { Collection } from "../interface/result";
 async function trending(req: Request, res: Response) {
 
     const secret = req.query.secret;
-    if (secret == null) {
-        return res.status(400).json({ "error": "Pixabay Secret key is missing" });
-    }
 
     const query_items = ["wallpaper", "background", "mobile wallpaper"];
     const random_q = encodeURIComponent(query_items[Math.floor(Math.random()*query_items.length)]);

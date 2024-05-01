@@ -5,10 +5,7 @@ import { FullImage } from "../interface/result";
 async function _fullImage(req: Request, res: Response) {
 
     const secret = req.query.secret;
-    if (secret == null) {
-        return res.status(400).json({ "error": "Pixabay Secret key is missing" });
-    }
-
+   
     const imageId = req.query.imageId;
     if (imageId == null) {
         return res.status(400).json({ "error": "Image id is missing." })

@@ -6,9 +6,6 @@ import { Collection } from "../interface/result";
 async function editorsChoice(req: Request, res: Response) {
 
     const secret = req.query.secret;
-    if (secret == null) {
-        return res.status(400).json({ "error": "Pixabay Secret key is missing" });
-    }
 
     try {
 

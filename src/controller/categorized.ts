@@ -5,10 +5,7 @@ import { Collection } from "../interface/result";
 async function categorized(req: Request, res: Response) {
 
     const secret = req.query.secret;
-    if (secret == null) {
-        return res.status(400).json({ "error": "Pixabay Secret key is missing" });
-    }
-
+    
     const {category, isSafe} = req.query;
     if (!category || !isSafe) {
         return res.status(400).json({ "error": "Fields category, isSafe are required." })
