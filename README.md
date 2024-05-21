@@ -8,6 +8,9 @@
 https://pixel-perks.vercel.app
 ```
 
+### Check [Api Documentation](/DOCS.md) for more information 
+
+
 ## Installation
 
 ### optional Steps
@@ -33,11 +36,6 @@ https://pixel-perks.vercel.app
     ```
     npm run dev
     ```
-
-## Documentation
-
-### Check [Api Documentation](/DOCS.md) for more information 
-
 ---
 
 ### Don't forget to leave a star ⭐.
